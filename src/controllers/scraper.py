@@ -185,11 +185,11 @@ def get_saramin_job_details(url):
 
     try:
         logo_image_url = driver.find_element(By.CSS_SELECTOR, 'div.logo img').get_attribute('src').strip()
-        job_details['로고이미지'] = logo_image_url
+        job_details['회사로고'] = logo_image_url
         image_save_message = save_image(logo_image_url, 'saramin_company_logo.png')
         job_details['로고저장결과'] = image_save_message
     except:
-        job_details['로고이미지'] = ""
+        job_details['회사로고'] = ""
 
     driver.quit()
     return job_details
@@ -273,12 +273,12 @@ def get_worknet_job_details(url):
 
     try:
         logo_image_url = driver.find_element(By.CSS_SELECTOR, 'div.logo-company div.img img').get_attribute('src').strip()
-        job_details['로고이미지'] = logo_image_url
+        job_details['회사로고'] = logo_image_url
         image_save_message = save_image(logo_image_url, 'worknet_company_logo.png')
         job_details['로고저장결과'] = image_save_message
     except Exception as e:
-        print(f"Error getting 로고이미지: {e}")
-        job_details['로고이미지'] = ""
+        print(f"Error getting 회사로고: {e}")
+        job_details['회사로고'] = ""
 
     try:
         company_name_additional = driver.find_element(By.XPATH, "//strong[text()='기업명']/following-sibling::div").text.strip()
@@ -497,11 +497,11 @@ def get_worknet_job_details_v3(url):
 
     try:
         logo_image_url = driver.find_element(By.CSS_SELECTOR, 'div.logo-company img').get_attribute('src').strip()
-        job_details['로고이미지'] = logo_image_url
+        job_details['회사로고'] = logo_image_url
         image_save_message = save_image(logo_image_url, 'worknet_company_logo.png')
         job_details['로고저장결과'] = image_save_message
     except:
-        job_details['로고이미지'] = ""
+        job_details['회사로고'] = ""
 
     try:
         job_info_table = driver.find_element(By.XPATH, "//table[caption='모집직종, 모집인원, 고용형태, 채용직급, 급여조건, 근무지역 표']")
@@ -851,12 +851,12 @@ def get_wanted_job_details(url):
     try:
         logo_elem = driver.find_element(By.CLASS_NAME, 'CompanyInfo_CompanyInfo__logo__2E3od').find_element(By.TAG_NAME, 'img')
         logo_url = logo_elem.get_attribute('src') if logo_elem else 'N/A'
-        job_details['로고'] = logo_url
+        job_details['회사로고'] = logo_url
         if logo_url != 'N/A':
             image_save_message = save_image(logo_url, 'wanted_company_logo.png')
-            job_details['로고저장결과'] = image_save_message
+            job_details['회사로고저장결과'] = image_save_message
     except:
-        job_details['로고'] = 'N/A'
+        job_details['회사로고'] = 'N/A'
 
     driver.quit()
     return job_details
