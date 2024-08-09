@@ -22,8 +22,10 @@ const JobPosting = mongoose.model('JobPosting', jobPostingSchema);
 // 채용 공고 저장
 router.post('/', async (req, res) => {
   try {
+    console.log('@@@@@@@@@@@',req.body);
     const { title, company, deadline, userid, URL, 회사로고, todoId } = req.body;
     const newJobPosting = new JobPosting({ title, company, deadline, userid, URL, 회사로고, todoId });
+    console.log('@@@@@@@@@@@@@@@',newJobPosting);
     await newJobPosting.save();
     res.status(201).send(newJobPosting);
   } catch (error) {
